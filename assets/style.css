@@ -127,6 +127,32 @@ img { max-width: 100%; }
   background: rgba(0, 0, 0, 0.5);
 }
 
+/* ---------- Copyright notice (home) ---------- */
+.copyright-note {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 8px 0 44px;
+  padding: 16px 20px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 12px;
+}
+.copyright-note .ico {
+  flex: 0 0 auto;
+  font-size: 1.6rem;
+  color: var(--accent);
+  line-height: 1;
+}
+.copyright-note p {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.copyright-note strong { color: var(--text); }
+
 /* ---------- Toolbar ---------- */
 .toolbar {
   display: flex;

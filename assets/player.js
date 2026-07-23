@@ -7,7 +7,6 @@
   const stage = document.getElementById("stage");
   const stageMsg = document.getElementById("stageMsg");
   const titleEl = document.getElementById("title");
-  const replayBtn = document.getElementById("replayBtn");
   const fsBtn = document.getElementById("fsBtn");
   const shareBtn = document.getElementById("shareBtn");
   const shareRow = document.getElementById("shareRow");
@@ -93,7 +92,7 @@
     quality: "high",
     contextMenu: "on",
     wmode: "opaque",
-    unmuteOverlay: "visible",
+    unmuteOverlay: "hidden",
     preferredRenderer: "webgl",
     logLevel: "error",
   };
@@ -136,10 +135,6 @@
   }
 
   // ---- Kontroller ----
-  replayBtn.addEventListener("click", function () {
-    if (player) load();
-  });
-
   fsBtn.addEventListener("click", function () {
     const el = stage;
     if (document.fullscreenElement) {
