@@ -76,8 +76,13 @@
   document.title = displayTitle + " — Türk İnternet Arkeolojisi";
 
   // Manifestten daha iyi başlık varsa kullan
-  fetch("manifest.json", { cache: "no-cache" })
-    .then((r) => (r.ok ? r.json() : null))
+  function getManifest() {
+    if (window.ARSIV_MANIFEST) return Promise.resolve(window.ARSIV_MANIFEST);
+    return fetch("manifest.json", { cache: "no-cache" }).then((r) =>
+      r.ok ? r.json() : null
+    );
+  }
+  getManifest()
     .then((data) => {
       if (!data || !data.categories) return;
       for (const key in data.categories) {

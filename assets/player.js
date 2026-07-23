@@ -63,8 +63,13 @@
   document.title = displayTitle + " — SWF Arşivi";
 
   // Manifestten daha iyi bir başlık varsa onu kullan (varsa).
-  fetch("manifest.json", { cache: "no-cache" })
-    .then((r) => (r.ok ? r.json() : null))
+  function getManifest() {
+    if (window.ARSIV_MANIFEST) return Promise.resolve(window.ARSIV_MANIFEST);
+    return fetch("manifest.json", { cache: "no-cache" }).then((r) =>
+      r.ok ? r.json() : null
+    );
+  }
+  getManifest()
     .then((data) => {
       const cat = data && data.categories && data.categories.swf;
       if (!cat || !Array.isArray(cat.items)) return;

@@ -1,4 +1,5 @@
-{
+// Otomatik üretildi — elle düzenlemeyin. Kaynak: scripts/generate-manifest.mjs
+window.ARSIV_MANIFEST = {
   "generatedAt": "2026-07-23T13:17:54.058Z",
   "categories": {
     "swf": {
@@ -537,4 +538,4 @@
       ]
     }
   }
-}
+};

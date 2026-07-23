@@ -19,6 +19,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const ARSIV_DIR = path.join(ROOT, "arsiv");
 const OUTPUT = path.join(ROOT, "manifest.json");
+// Ayrıca bir JS sürümü üretiriz: <script> ile yüklendiği için file:// üzerinde
+// ve manifesti henüz üretmemiş dağıtımlarda da (fetch gerekmeden) çalışır.
+const OUTPUT_JS = path.join(ROOT, "assets", "manifest.js");
 
 // Kategoriler ve kabul ettikleri uzantılar
 const CATEGORIES = [
@@ -115,8 +118,17 @@ async function main() {
     console.log(`  ${cat.key.padEnd(5)}: ${items.length} dosya`);
   }
 
-  await fs.writeFile(OUTPUT, JSON.stringify(manifest, null, 2) + "\n", "utf8");
-  console.log(`manifest.json olusturuldu — toplam ${total} icerik.`);
+  const json = JSON.stringify(manifest, null, 2);
+  await fs.writeFile(OUTPUT, json + "\n", "utf8");
+  await fs.writeFile(
+    OUTPUT_JS,
+    "// Otomatik üretildi — elle düzenlemeyin. Kaynak: scripts/generate-manifest.mjs\n" +
+      "window.ARSIV_MANIFEST = " +
+      json +
+      ";\n",
+    "utf8"
+  );
+  console.log(`manifest.json + assets/manifest.js olusturuldu — toplam ${total} icerik.`);
 }
 
 main().catch((err) => {

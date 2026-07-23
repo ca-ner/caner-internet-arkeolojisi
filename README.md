@@ -32,14 +32,17 @@ arsiv/
   ├── gif/          .gif dosyaları
   └── foto/         .jpg, .jpeg, .png, .webp, .avif, .bmp
 manifest.json       Otomatik üretilen içerik listesi (tüm kategoriler)
+assets/manifest.js  Aynı listenin <script> ile gömülen sürümü (otomatik)
 scripts/            Manifest üreticisi
 .github/workflows/  GitHub Pages dağıtım iş akışı
 ```
 
 GitHub Pages statik olduğu için dizin listeleyemez. Bu yüzden `arsiv/` altındaki
-kategori klasörleri taranarak tek bir **`manifest.json`** üretilir; sayfalar
-hangi içeriklerin mevcut olduğunu bu dosyadan öğrenir. Manifest, her `push`'ta
-GitHub Actions tarafından otomatik yeniden oluşturulur.
+kategori klasörleri taranarak tek bir **`manifest.json`** (ve `<script>` ile
+gömülen ikizi **`assets/manifest.js`**) üretilir; sayfalar hangi içeriklerin
+mevcut olduğunu buradan öğrenir. `manifest.js` sayesinde site, `fetch`
+kısıtlaması olan yerel `file://` açılışlarında bile çalışır. Manifest, her
+`push`'ta GitHub Actions tarafından otomatik yeniden oluşturulur.
 
 ## Özellikler
 

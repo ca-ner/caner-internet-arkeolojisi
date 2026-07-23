@@ -106,11 +106,16 @@
     render(filtered);
   }
 
-  fetch("manifest.json", { cache: "no-cache" })
-    .then((r) => {
+  // Manifest: önce <script> ile gömülü global, olmazsa fetch (yedek).
+  function getManifest() {
+    if (window.ARSIV_MANIFEST) return Promise.resolve(window.ARSIV_MANIFEST);
+    return fetch("manifest.json", { cache: "no-cache" }).then((r) => {
       if (!r.ok) throw new Error("manifest");
       return r.json();
-    })
+    });
+  }
+
+  getManifest()
     .then((data) => {
       const cat = data.categories && data.categories[category];
       items = cat && Array.isArray(cat.items) ? cat.items : [];

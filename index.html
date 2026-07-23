@@ -22,41 +22,20 @@
     />
   </head>
   <body>
-    <header class="home-hero">
-      <p class="kicker">Dijital Arşiv</p>
-      <h1><span class="name">Caner</span> ile Türk İnternet Arkeolojisi</h1>
-      <p>
-        Eski Türk internet kültürünün izlerini bir araya getiren arşiv. Flash
-        animasyonlar, GIF'ler ve fotoğraflar — hepsi tarayıcıda, eklenti
-        gerektirmeden.
-      </p>
+    <header class="site-header">
+      <div class="container">
+        <p class="kicker">Dijital Arşiv</p>
+        <h1><span class="name">Caner</span> ile Türk İnternet Arkeolojisi</h1>
+        <p>
+          Eski Türk internet kültürünün izleri — Flash animasyonlar, GIF'ler ve
+          fotoğraflar. Hepsi tarayıcıda, eklenti gerektirmeden.
+        </p>
+      </div>
     </header>
 
     <main class="container">
-      <div class="category-grid">
-        <a class="category-card" href="swf.html" id="cat-swf">
-          <span class="arrow" aria-hidden="true">→</span>
-          <span class="ico" aria-hidden="true">📼</span>
-          <span class="cat-title">SWF</span>
-          <span class="cat-desc">Flash animasyonları ve mini oyunlar. Ruffle ile döngüde oynatılır.</span>
-          <span class="cat-count" data-count="swf">—</span>
-        </a>
-
-        <a class="category-card" href="gif.html" id="cat-gif">
-          <span class="arrow" aria-hidden="true">→</span>
-          <span class="ico" aria-hidden="true">🎞️</span>
-          <span class="cat-title">GIF</span>
-          <span class="cat-desc">Hareketli GIF'ler — sonsuz döngüde, olduğu gibi.</span>
-          <span class="cat-count" data-count="gif">—</span>
-        </a>
-
-        <a class="category-card" href="foto.html" id="cat-foto">
-          <span class="arrow" aria-hidden="true">→</span>
-          <span class="ico" aria-hidden="true">🖼️</span>
-          <span class="cat-title">Foto</span>
-          <span class="cat-desc">Dönemin fotoğrafları, ekran görüntüleri ve görselleri.</span>
-          <span class="cat-count" data-count="foto">—</span>
-        </a>
+      <div class="grid home-cats" id="cats">
+        <!-- Kategori önizleme kutuları landing.js tarafından oluşturulur -->
       </div>
     </main>
 
@@ -67,23 +46,7 @@
       </div>
     </footer>
 
-    <script>
-      // Kategori sayaçlarını manifestten doldur
-      fetch("manifest.json", { cache: "no-cache" })
-        .then((r) => (r.ok ? r.json() : null))
-        .then((m) => {
-          if (!m || !m.categories) return;
-          document.querySelectorAll("[data-count]").forEach((el) => {
-            const cat = m.categories[el.getAttribute("data-count")];
-            const n = cat ? cat.count : 0;
-            el.textContent = n + " içerik";
-          });
-        })
-        .catch(() => {
-          document
-            .querySelectorAll("[data-count]")
-            .forEach((el) => (el.textContent = ""));
-        });
-    </script>
+    <script src="assets/manifest.js"></script>
+    <script src="assets/landing.js" defer></script>
   </body>
 </html>
