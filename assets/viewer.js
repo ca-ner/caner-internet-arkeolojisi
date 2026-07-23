@@ -7,7 +7,6 @@
   const stageMsg = document.getElementById("stageMsg");
   const titleEl = document.getElementById("title");
   const backLink = document.getElementById("backLink");
-  const openBtn = document.getElementById("openBtn");
   const fsBtn = document.getElementById("fsBtn");
   const shareBtn = document.getElementById("shareBtn");
   const shareRow = document.getElementById("shareRow");
@@ -69,7 +68,6 @@
   else if (catPrefix === "foto") backLink.href = "foto.html";
 
   const mediaPath = "arsiv/" + file;
-  openBtn.href = mediaPath;
 
   let displayTitle = titleFromFilename(file);
   titleEl.textContent = displayTitle;
